@@ -1,3 +1,14 @@
 [
-
+  {
+    "songName": "Young And Beautiful.mp3",
+    "singer": "Lana Del Rey"
+  },
+  {
+    "songName": "Royals.mp3",
+    "singer": "Lorde"
+  },
+  {
+    "songName": "No Vacancy.mp3",
+    "singer": "OneRepublic"
+  }
 ]

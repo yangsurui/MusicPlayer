@@ -16,17 +16,7 @@ class LyricsList extends React.Component {
 
 class MusicPlayer extends React.Component {
   render() {
-    return (
-      <div>
-        <section>
-          {SongList}
-        </section>
-        <section>
-          {LyricsList}
-        </section>
-        <audio controls="controls"></audio>
-      </div>
-    );
+    
   }
 }
 
