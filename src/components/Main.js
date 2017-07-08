@@ -21,8 +21,8 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="search-bar">
-        <input type="text" placeholder="搜索关键字"/>
-        <span></span>
+        <input className="search" type="text" placeholder="搜索关键字"/>
+        <span className="searchBtn"></span>
       </div>
     )
   }
@@ -73,10 +73,20 @@ class MusicPlayer extends React.Component {
   render(){
     return(
       <div id="wrapper">
-        <div id="seach-bar-wrapper"><SearchBar/></div>
-        <div id="song-list-wrapper"><SongList/></div>
-        <div id="lyrics-list-wrapper"><LyricsList/></div>
-        <div id="player-list"><Player/></div>
+        <div id="search-bar-wrapper">
+          <SearchBar/>
+        </div>
+        <div id="main">
+          <div id="song-list-wrapper">
+            <SongList/>
+          </div>
+          <div id="lyrics-list-wrapper">
+            <LyricsList/>
+          </div>
+        </div>
+        <div id="player-list">
+          <Player/>
+        </div>
       </div>
 
     )

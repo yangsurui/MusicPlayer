@@ -1,21 +1,15 @@
 /* Base Application Styles */
-body {
-  color: #fff;
-  background: #222;
+
+html,body{
+  background-color: #000;
 }
 
-.index img {
-  margin: 40px auto;
-  border-radius: 4px;
-  background: #fff;
-  display: block;
-}
+.search-bar{
 
-.index .notice {
-  margin: 20px auto;
-  padding: 15px 0;
-  text-align: center;
-  border: 1px solid #000;
-  border-width: 1px 0;
-  background: #666;
+  border: 1px solid #fff;
+  position: absolute;
+  height: 50px;
+  top: 30px;
+  width: 120px;
+
 }
