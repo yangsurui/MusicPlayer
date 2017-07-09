@@ -3,13 +3,3 @@
 html,body{
   background-color: #000;
 }
-
-.search-bar{
-
-  border: 1px solid #fff;
-  position: absolute;
-  height: 50px;
-  top: 30px;
-  width: 120px;
-
-}

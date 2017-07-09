@@ -1,17 +1,30 @@
 [
   {
     "id": "1",
-    "songName": "Young And Beautiful.mp3",
-    "singer": "Lana Del Rey"
+    "songName": "Young And Beautiful",
+    "artists": "Lana Del Rey",
+    "url": "../audios/Young And Beautiful.mp3",
+    "album": {
+      "name": "Young And Beautiful",
+      "url": "../images/Young And Beautiful.jpg"
+    }
   },
   {
     "id": "2",
     "songName": "Royals.mp3",
-    "singer": "Lorde"
+    "artists": "Lorde",
+    "album": {
+      "name": "Royals",
+      "url": "../images/Royals.jpg"
+    }
   },
   {
     "id": "3",
     "songName": "No Vacancy.mp3",
-    "singer": "OneRepublic"
+    "artists": "OneRepublic",
+    "album": {
+      "name": "No Vacancy",
+      "url": "../images/No Vacancy.jpg"
+    }
   }
 ]
