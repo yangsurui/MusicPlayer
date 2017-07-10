@@ -1,30 +1,33 @@
 [
-  {
-    "id": "1",
-    "songName": "Young And Beautiful",
-    "artists": "Lana Del Rey",
-    "url": "../audios/Young And Beautiful.mp3",
-    "album": {
-      "name": "Young And Beautiful",
-      "url": "../images/Young And Beautiful.jpg"
+    {
+      "number": "1",
+      "songName": "Young And Beautiful",
+      "artists": "Lana Del Rey",
+      "url": "../audios/YoungAndBeautiful.mp3",
+      "album": {
+        "name": "Young And Beautiful",
+        "url": "../images/Young And Beautiful.jpg"
+      }
+    },
+    {
+      "number": "2",
+      "songName": "Royals.mp3",
+      "artists": "Lorde",
+      "url": "../audios/Royals.mp3",
+      "album": {
+        "name": "Royals",
+        "url": "../images/Royals.jpg"
+      }
+    },
+    {
+      "number": "3",
+      "songName": "No Vacancy",
+      "artists": "OneRepublic",
+      "url": "../audios/NoVacancy.mp3",
+      "album": {
+        "name": "No Vacancy",
+        "url": "../images/No Vacancy.jpg"
+      }
     }
-  },
-  {
-    "id": "2",
-    "songName": "Royals.mp3",
-    "artists": "Lorde",
-    "album": {
-      "name": "Royals",
-      "url": "../images/Royals.jpg"
-    }
-  },
-  {
-    "id": "3",
-    "songName": "No Vacancy.mp3",
-    "artists": "OneRepublic",
-    "album": {
-      "name": "No Vacancy",
-      "url": "../images/No Vacancy.jpg"
-    }
-  }
 ]
+
