@@ -35,7 +35,7 @@ class SongList extends React.Component {
       );
     });
     return(
-      <div className="song-list-container">
+      <div className="song-list-wrapper">
         <ul id="song-list-title">
           <li>编号</li>
           <li>歌曲</li>
@@ -52,12 +52,12 @@ class SongInfo extends React.Component {
 
   render(){
     return(
-      <div className="song-info-container">
+      <div className="song-info-wrapper">
         <div className="album-pic">
-          <img />
+          <img src={this.props.data.album.url}/>
         </div>
-        <div className="song-name"></div>
-        <div className="singer"></div>
+        <div className="song-name">{this.props.data.songName}</div>
+        <div className="artists">{this.props.data.artists}</div>
       </div>
     );
   }
@@ -66,16 +66,28 @@ class Player extends React.Component {
 
   render() {
     return(
-      <div className="player">
+      <div className="player-wrapper">
 
-        <audio src={this.props.data.url} controls="controls"></audio>
+        <audio src={this.props.data.url}></audio>
 
         <div className="left-content">
-          <span className="pre-song"></span>
-          <span className="next-song"></span>
+          <span className="icon-font pre-song"></span>
+          <span className="icon-font play"></span>
+          <span className="icon-font next-song"></span>
+        </div>
+
+        <div className="progress-bar">
+            <div className="progress"></div>
+            <div className="progress-btn"></div>
+        </div>
+
+        <div className="right-content">
+            <span className="icon-font play-mode"></span>
+            <span className="icon-font volume-control"></span>
         </div>
 
       </div>
+
     );
   }
 
@@ -94,15 +106,9 @@ class MusicPlayer extends React.Component {
   render() {
     return(
       <div id="wrapper">
-        <div id="song-list-wrapper">
-          <SongList/>
-        </div>
-        <div id="song-info-wrapper">
-          <SongInfo/>
-        </div>
-        <div id="player-wrapper">
-          <Player data={songData[this.state.currentSongIndex]}/>
-        </div>
+        <SongList/>
+        <SongInfo data={songData[this.state.currentSongIndex]}/>
+        <Player data={songData[this.state.currentSongIndex]}/>
       </div>
 
     );

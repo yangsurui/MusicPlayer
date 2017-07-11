@@ -6,7 +6,7 @@
       "url": "../audios/YoungAndBeautiful.mp3",
       "album": {
         "name": "Young And Beautiful",
-        "url": "../images/Young And Beautiful.jpg"
+        "url": "../images/YoungAndBeautiful.jpg"
       }
     },
     {
@@ -22,11 +22,11 @@
     {
       "number": "3",
       "songName": "No Vacancy",
-      "artists": "OneRepublic",
+      "artists": "One Republic",
       "url": "../audios/NoVacancy.mp3",
       "album": {
         "name": "No Vacancy",
-        "url": "../images/No Vacancy.jpg"
+        "url": "../images/NoVacancy.jpg"
       }
     }
 ]

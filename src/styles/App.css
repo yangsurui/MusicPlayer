@@ -1,22 +1,108 @@
 /* Base Application Styles */
-
-html,body{
-  background-color: #fff;
+@font-face {
+  font-family: 'icon-font';
+  src:
+    url('../fonts/icomoon.eot'), /* IE9 兼容模式 */
+    url('../fonts/icomoon.svg') format('svg'),
+    url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf') format('truetype'),
+    url('../fonts/icomoon.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-#wrapper{
+* {
+  margin: 0;
+  padding: 0;
+  color: #999999;
+}
+
+html, body {
+  background-color: #333333;
+
+}
+
+#app {
   width: 100%;
   height: 100%;
 }
-li{
+
+#wrapper {
+  width: 70%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.song-list-wrapper {
+  float: left;
+  width: 660px;
+}
+
+.song-info-wrapper {
+  float: left;
+}
+
+li {
   list-style: none;
   float: left;
-  margin: 0 10px;
+  padding: 10px;
+  width: 140px;
+  height: 20px;
+  line-height: 26px;
+  text-align: center;
 }
-ul{
-  display: inline-block;
-}
-.song-list-container{
-  width: 700px;
 
+ul {
+  display: inline-block;
+  border-top: 1px solid #999999;
+  text-align: center;
+}
+/* SongInfo */
+.album-pic img {
+  border-radius: 50%;
+  width: 200px;
+}
+
+/* Player */
+.play-wrapper{
+  width: 100%;
+  margin: 20px 0 0 0;
+}
+.left-content{
+  float: left;
+  width: 10%;
+}
+.progress-bar{
+  float: left;
+  width: 70%;
+}
+.right-content{
+  float: left;
+  width: 8%;
+}
+.progress{
+  width: 80%;
+  height: 4px;
+  background-color: #7a7a7a;
+  margin-top: 6px;
+}
+
+.icon-font{
+  font-family: icon-font;
+  margin: 0 8px 0 0;
+}
+.pre-song::before{
+  content: '\ea1a';
+}
+.play::before{
+  content: '\ea15';
+}
+.next-song::before{
+  content: '\ea1b';
+}
+.play-mode::before{
+  content: '\e9bd'; /* 默认顺序播放 */
+}
+.volume-control::before{
+  content: '\ea26';
 }
