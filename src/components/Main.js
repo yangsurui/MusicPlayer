@@ -63,17 +63,31 @@ class SongInfo extends React.Component {
   }
 }
 class Player extends React.Component {
-
+  constructor(props){
+    super(props);
+    this.handleClick1 = this.handleClick1.bind(this);
+    this.handleClick2 = this.handleClick2.bind(this);
+  }
+  handleClick1(e){
+    e.stopPropagation();
+    e.preventDefault();
+    this.props.play();
+  }
+  handleClick2(e){
+    e.stopPropagation();
+    e.preventDefault();
+    this.props.nextSong();
+  }
   render() {
     return(
       <div className="player-wrapper">
 
-        <audio src={this.props.data.url}></audio>
+        <audio src={this.props.data.url} ref="audio" ></audio>
 
         <div className="left-content">
           <span className="icon-font pre-song"></span>
-          <span className="icon-font play"></span>
-          <span className="icon-font next-song"></span>
+          <span className="icon-font play" onClick={this.handleClick1}></span>
+          <span className="icon-font next-song" onClick={this.handleClick2}></span>
         </div>
 
         <div className="progress-bar">
@@ -87,10 +101,8 @@ class Player extends React.Component {
         </div>
 
       </div>
-
     );
   }
-
 }
 class MusicPlayer extends React.Component {
   constructor(props){
@@ -100,21 +112,54 @@ class MusicPlayer extends React.Component {
       currentSongIndex: 0, //当前播放歌曲的索引
       currentSongTime: 0, //当前歌曲播放的时间
       currentSongTotalTime: 0, //当前播放歌曲的总时长
-      isPlay: true //歌曲的播放状态，true播放，false暂停
+      isPlay: false, //歌曲的播放状态，true播放，false暂停
+      playMode: true //播放模式，true列表顺序播放，false随机播放
+
+    };
+    this.play = this.play.bind(this);
+    this.nextSong = this.nextSong.bind(this);
+  }
+
+  play(){
+    let audio = document.getElementsByTagName('audio')[0];
+    if(!this.state.isPlay){
+      audio.play();
+      this.state.isPlay = true;
+    }else{
+      audio.pause();
+      this.state.isPlay = false;
     }
   }
+
+  nextSong(){
+    let lastIndex = songData.length - 1;
+    if(this.state.currentSongIndex < lastIndex){
+      this.state.currentSongIndex +=1;
+    }else{
+      this.state.currentSongIndex = 0;
+    }
+    this.setState();
+
+
+  }
+
   render() {
     return(
       <div id="wrapper">
         <SongList/>
-        <SongInfo data={songData[this.state.currentSongIndex]}/>
-        <Player data={songData[this.state.currentSongIndex]}/>
+        <SongInfo
+          data={songData[this.state.currentSongIndex]}
+          play={this.play}
+        />
+        <Player
+          data={songData[this.state.currentSongIndex]}
+          play={this.play}
+          nextSong={this.nextSong}
+        />
       </div>
 
     );
   }
 }
-MusicPlayer.defaultProps = {
-  songData : songData
-};
+
 export default MusicPlayer;

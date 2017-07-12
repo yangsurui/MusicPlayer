@@ -34,12 +34,16 @@ html, body {
 }
 
 .song-list-wrapper {
-  float: left;
+  position: relative;
   width: 660px;
+  top: 100px;
+
 }
 
 .song-info-wrapper {
-  float: left;
+  position: relative;
+  top: -100px;
+  left: 680px;
 }
 
 li {
@@ -64,45 +68,62 @@ ul {
 }
 
 /* Player */
-.play-wrapper{
-  width: 100%;
-  margin: 20px 0 0 0;
+.player-wrapper{
+  width: 70%;
+  position: absolute;
+  bottom: 30px;
 }
 .left-content{
   float: left;
   width: 10%;
 }
-.progress-bar{
-  float: left;
-  width: 70%;
-}
+
 .right-content{
   float: left;
-  width: 8%;
+  margin: 10px 0 0 30px;
+}
+.progress-bar{
+  float: left;
+  width: 64%;
+  margin: 34px 0 0 70px;
+
 }
 .progress{
-  width: 80%;
-  height: 4px;
+  height: 2px;
   background-color: #7a7a7a;
-  margin-top: 6px;
+}
+.progress-btn{
+  border-radius: 50%;
+  background-color: #999999;
+  width: 10px;
+  height: 10px;
+  margin: -7px 0 0 0;
+
 }
 
 .icon-font{
   font-family: icon-font;
   margin: 0 8px 0 0;
+  font-size: 34px;
+  cursor: pointer;
 }
 .pre-song::before{
   content: '\ea1a';
 }
 .play::before{
   content: '\ea15';
+  font-size: 46px;
 }
 .next-song::before{
   content: '\ea1b';
 }
 .play-mode::before{
   content: '\e9bd'; /* 默认顺序播放 */
+  font-size: 30px;
+
 }
 .volume-control::before{
   content: '\ea26';
+  font-size: 30px;
+
 }
