@@ -35,7 +35,7 @@ html, body {
 
 .song-list-wrapper {
   position: relative;
-  width: 660px;
+  width: 780px;
   top: 100px;
 
 }
@@ -43,14 +43,14 @@ html, body {
 .song-info-wrapper {
   position: relative;
   top: -100px;
-  left: 680px;
+  left: 780px;
 }
 
 li {
   list-style: none;
   float: left;
   padding: 10px;
-  width: 140px;
+  width: 160px;
   height: 20px;
   line-height: 26px;
   text-align: center;
@@ -114,16 +114,22 @@ ul {
   content: '\ea15';
   font-size: 46px;
 }
+.pause::before{
+  content: '\ea16';
+  font-size: 46px;
+}
 .next-song::before{
   content: '\ea1b';
 }
-.play-mode::before{
+.order::before{
   content: '\e9bd'; /* 默认顺序播放 */
   font-size: 30px;
-
+}
+.shuffle::before{
+  content: 'ea30';
+  font-size: 30px;
 }
 .volume-control::before{
   content: '\ea26';
   font-size: 30px;
-
 }

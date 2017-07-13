@@ -63,31 +63,21 @@ class SongInfo extends React.Component {
   }
 }
 class Player extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleClick1 = this.handleClick1.bind(this);
-    this.handleClick2 = this.handleClick2.bind(this);
-  }
-  handleClick1(e){
-    e.stopPropagation();
-    e.preventDefault();
-    this.props.play();
-  }
-  handleClick2(e){
-    e.stopPropagation();
-    e.preventDefault();
-    this.props.nextSong();
-  }
+
   render() {
+
+    let playStyle = 'icon-font';
+    playStyle += this.props.songStateObj.isPlay ? ' play' :' pause';
+
     return(
       <div className="player-wrapper">
 
         <audio src={this.props.data.url} ref="audio" ></audio>
 
         <div className="left-content">
-          <span className="icon-font pre-song"></span>
-          <span className="icon-font play" onClick={this.handleClick1}></span>
-          <span className="icon-font next-song" onClick={this.handleClick2}></span>
+          <span className="icon-font pre-song" onClick={this.props.preSong.bind(this)}></span>
+          <span className={playStyle} onClick={this.props.play.bind(this)}></span>
+          <span className="icon-font next-song" onClick={this.props.nextSong.bind(this)}></span>
         </div>
 
         <div className="progress-bar">
@@ -96,7 +86,7 @@ class Player extends React.Component {
         </div>
 
         <div className="right-content">
-            <span className="icon-font play-mode"></span>
+            <span className="icon-font order"></span>
             <span className="icon-font volume-control"></span>
         </div>
 
@@ -109,38 +99,49 @@ class MusicPlayer extends React.Component {
     super(props);
     this.state={
       //初始化音乐播放器的状态
-      currentSongIndex: 0, //当前播放歌曲的索引
-      currentSongTime: 0, //当前歌曲播放的时间
-      currentSongTotalTime: 0, //当前播放歌曲的总时长
-      isPlay: false, //歌曲的播放状态，true播放，false暂停
-      playMode: true //播放模式，true列表顺序播放，false随机播放
-
+        currentSongIndex: 0, //当前播放歌曲的索引
+        currentSongTime: 0, //当前歌曲播放的时间
+        currentSongTotalTime: 0, //当前播放歌曲的总时长
+        isPlay: false, //歌曲的播放状态，true播放，false暂停，默认暂停
+        playMode: true //播放模式，true列表顺序播放，false随机播放，默认随机播放
     };
     this.play = this.play.bind(this);
     this.nextSong = this.nextSong.bind(this);
+    this.preSong = this.preSong.bind(this);
   }
 
   play(){
     let audio = document.getElementsByTagName('audio')[0];
     if(!this.state.isPlay){
       audio.play();
-      this.state.isPlay = true;
     }else{
       audio.pause();
-      this.state.isPlay = false;
     }
+    this.state.isPlay = !this.state.isPlay;
+    this.setState({});
   }
 
   nextSong(){
     let lastIndex = songData.length - 1;
+
     if(this.state.currentSongIndex < lastIndex){
       this.state.currentSongIndex +=1;
     }else{
       this.state.currentSongIndex = 0;
     }
-    this.setState();
 
+    this.setState({});
+  }
 
+  preSong(){
+    let lastIndex = songData.length - 1;
+
+    if(this.state.currentSongIndex === 0){
+      this.state.currentSongIndex = lastIndex;
+    }else{
+      this.state.currentSongIndex -= 1;
+    }
+    this.setState({});
   }
 
   render() {
@@ -153,8 +154,10 @@ class MusicPlayer extends React.Component {
         />
         <Player
           data={songData[this.state.currentSongIndex]}
+          songStateObj={this.state}
           play={this.play}
           nextSong={this.nextSong}
+          preSong={this.preSong}
         />
       </div>
 
