@@ -11,6 +11,15 @@
   font-style: normal;
 }
 
+@keyframes rotation {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -65,7 +74,12 @@ ul {
 .album-pic img {
   border-radius: 50%;
   width: 200px;
+
 }
+.img-rotation{
+  animation: rotation 30s infinite;
+}
+
 
 /* Player */
 .player-wrapper{
