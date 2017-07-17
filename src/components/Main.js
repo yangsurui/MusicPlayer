@@ -86,6 +86,10 @@ class Player extends React.Component {
             <div className="progress"></div>
             <div className="progress-btn"></div>
         </div>
+        <div>
+          <span className="current-time"></span>
+          <span className="total-time"></span>
+        </div>
 
         <div className="right-content">
             <span className="icon-font order"></span>
@@ -110,6 +114,7 @@ class MusicPlayer extends React.Component {
     this.play = this.play.bind(this);
     this.nextSong = this.nextSong.bind(this);
     this.preSong = this.preSong.bind(this);
+
   }
 
   play(){
@@ -132,6 +137,15 @@ class MusicPlayer extends React.Component {
       this.state.currentSongIndex = 0;
     }
     this.setState({});
+  }
+
+  //转换时间的表示方式
+  timeConvert(){
+    this.state.currentSongTotalTime = this.props.data.duration;
+    //转换时间的表示方式
+    let min = Math.floor(this.state.currentSongTotalTime / 60);
+    let sec = this.state.currentSongTotalTime - min * 60;
+    this.state.currentSongTotalTime = '0' + min + ':' +sec;
   }
 
   preSong(){

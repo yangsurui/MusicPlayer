@@ -7,7 +7,8 @@
       "album": {
         "name": "Young And Beautiful",
         "url": "../images/YoungAndBeautiful.jpg"
-      }
+      },
+      "duration": 236
     },
     {
       "number": "2",
@@ -17,7 +18,8 @@
       "album": {
         "name": "Royals",
         "url": "../images/Royals.jpg"
-      }
+      },
+      "duration": 190
     },
     {
       "number": "3",
@@ -27,7 +29,8 @@
       "album": {
         "name": "No Vacancy",
         "url": "../images/NoVacancy.jpg"
-      }
+      },
+      "duration": 223
     }
 ]
 
