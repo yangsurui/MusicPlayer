@@ -50,9 +50,6 @@ class SongList extends React.Component {
 class SongInfo extends React.Component {
 
   render(){
-
-
-
     return(
       <div className="song-info-wrapper">
         <div className='album-pic' onClick={this.props.play.bind(this)}>
@@ -66,10 +63,30 @@ class SongInfo extends React.Component {
 }
 class Player extends React.Component {
 
+  /**
+   * 转换时间的表示方式
+   * @param time 以秒计时转换为以分秒计时
+   */
+  timeConvert(time){
+    let min = Math.floor(time / 60);
+    let sec = time - min * 60;
+    time = min + ':' +sec;
+    return time;
+  }
+
   render() {
 
-    let playStyle = 'icon-font';
-    playStyle += this.props.songState.isPlay ? ' play' :' pause';
+    let playBtnStyle = 'icon-font';
+    playBtnStyle += this.props.songState.isPlay ? ' play' :' pause';
+
+    let progressBtnStyle = {},
+      left = 0;
+    if(this.props.songState.isPlay){
+      setTimeout(()=>{
+        left += 1;
+        progressBtnStyle.left = left + 'px';
+      },1000);
+    }
 
     return(
       <div className="player-wrapper">
@@ -78,19 +95,18 @@ class Player extends React.Component {
 
         <div className="left-content">
           <span className="icon-font pre-song" onClick={this.props.preSong.bind(this)}></span>
-          <span className={playStyle} onClick={this.props.play.bind(this)}></span>
+          <span className={playBtnStyle} onClick={this.props.play.bind(this)}></span>
           <span className="icon-font next-song" onClick={this.props.nextSong.bind(this)}></span>
         </div>
 
         <div className="progress-bar">
             <div className="progress"></div>
-            <div className="progress-btn"></div>
+            <div className="progress-btn" style={progressBtnStyle}></div>
         </div>
-        <div>
+        <div className="song-time">
           <span className="current-time"></span>
-          <span className="total-time"></span>
+          <span className="total-time">{this.timeConvert(this.props.data.duration)}</span>
         </div>
-
         <div className="right-content">
             <span className="icon-font order"></span>
             <span className="icon-font volume-control"></span>
@@ -114,7 +130,6 @@ class MusicPlayer extends React.Component {
     this.play = this.play.bind(this);
     this.nextSong = this.nextSong.bind(this);
     this.preSong = this.preSong.bind(this);
-
   }
 
   play(){
@@ -137,15 +152,6 @@ class MusicPlayer extends React.Component {
       this.state.currentSongIndex = 0;
     }
     this.setState({});
-  }
-
-  //转换时间的表示方式
-  timeConvert(){
-    this.state.currentSongTotalTime = this.props.data.duration;
-    //转换时间的表示方式
-    let min = Math.floor(this.state.currentSongTotalTime / 60);
-    let sec = this.state.currentSongTotalTime - min * 60;
-    this.state.currentSongTotalTime = '0' + min + ':' +sec;
   }
 
   preSong(){

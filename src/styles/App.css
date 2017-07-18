@@ -48,7 +48,6 @@ html, body {
   top: 100px;
 
 }
-
 .song-info-wrapper {
   position: relative;
   top: -100px;
@@ -88,19 +87,24 @@ ul {
   bottom: 30px;
 }
 .left-content{
-  float: left;
   width: 10%;
 }
-
+.song-time{
+  position: relative;
+  left: 84%;
+  bottom: 32px;
+}
 .right-content{
-  float: left;
-  margin: 10px 0 0 30px;
+  position: relative;
+  left: 94%;
+  bottom: 64px;
+
 }
 .progress-bar{
-  float: left;
   width: 64%;
-  margin: 34px 0 0 70px;
-
+  position: relative;
+  left: 150px;
+  bottom: 20px;
 }
 .progress{
   height: 2px;
@@ -111,7 +115,8 @@ ul {
   background-color: #999999;
   width: 10px;
   height: 10px;
-  margin: -7px 0 0 0;
+  margin: -6px 0 0 0;
+  position: relative;
 
 }
 
