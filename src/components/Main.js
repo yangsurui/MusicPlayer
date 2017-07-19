@@ -40,8 +40,7 @@ class SongList extends React.Component {
           <li>编号</li>
           <li>歌曲</li>
           <li>歌手</li>
-          <li>专辑</li>
-        </ul>
+          <li>专辑</li></ul>
         {songInfo}
       </div>
     );
@@ -50,6 +49,7 @@ class SongList extends React.Component {
 class SongInfo extends React.Component {
 
   render(){
+
     return(
       <div className="song-info-wrapper">
         <div className='album-pic' onClick={this.props.play.bind(this)}>
@@ -69,42 +69,41 @@ class Player extends React.Component {
    */
   timeConvert(time){
     let min = Math.floor(time / 60);
-    let sec = time - min * 60;
+    let sec = Math.floor(time - min * 60);
+    if(sec < 10){
+      sec = '0' + sec;
+    }
+    if(min < 10){
+      min = '0' + min;
+    }
     time = min + ':' +sec;
     return time;
   }
 
   render() {
+    let audio = document.getElementsByTagName('audio')[0];
 
-    let playBtnStyle = 'icon-font';
-    playBtnStyle += this.props.songState.isPlay ? ' play' :' pause';
+    let playBtnClassName = 'icon-font';
+    playBtnClassName += this.props.songState.isPlay ? ' play' :' pause';
 
-    let progressBtnStyle = {},
-      left = 0;
-    if(this.props.songState.isPlay){
-      setTimeout(()=>{
-        left += 1;
-        progressBtnStyle.left = left + 'px';
-      },1000);
-    }
 
     return(
       <div className="player-wrapper">
 
-        <audio src={this.props.data.url} ref="audio" ></audio>
+        <audio src={this.props.data.url}></audio>
 
         <div className="left-content">
           <span className="icon-font pre-song" onClick={this.props.preSong.bind(this)}></span>
-          <span className={playBtnStyle} onClick={this.props.play.bind(this)}></span>
+          <span className={playBtnClassName} onClick={this.props.play.bind(this)}></span>
           <span className="icon-font next-song" onClick={this.props.nextSong.bind(this)}></span>
         </div>
 
         <div className="progress-bar">
             <div className="progress"></div>
-            <div className="progress-btn" style={progressBtnStyle}></div>
+            <div className="progress-btn"></div>
         </div>
         <div className="song-time">
-          <span className="current-time"></span>
+          <span className="current-time">{this.timeConvert(this.props.songState.currentSongTime)}/</span>
           <span className="total-time">{this.timeConvert(this.props.data.duration)}</span>
         </div>
         <div className="right-content">
@@ -132,6 +131,9 @@ class MusicPlayer extends React.Component {
     this.preSong = this.preSong.bind(this);
   }
 
+  /**
+   * 通过isPlay判断歌曲的播放状态，执行播放或暂停方法
+   */
   play(){
     let audio = document.getElementsByTagName('audio')[0];
     if(!this.state.isPlay){
@@ -143,6 +145,9 @@ class MusicPlayer extends React.Component {
     this.setState({});
   }
 
+  /**
+   * 播放下一首歌曲
+   */
   nextSong(){
     let lastIndex = songData.length - 1;
     this.state.isPlay = false;
@@ -153,7 +158,9 @@ class MusicPlayer extends React.Component {
     }
     this.setState({});
   }
-
+  /**
+   * 播放上一首歌曲
+   */
   preSong(){
     let lastIndex = songData.length - 1;
     this.state.isPlay = false;
@@ -164,7 +171,12 @@ class MusicPlayer extends React.Component {
     }
     this.setState({});
   }
-
+  componentDidMount(){
+    let audio = document.getElementsByTagName('audio')[0];
+    this.setState({
+      currentSongTime: audio.currentTime
+    });
+  }
   render() {
     return(
       <div id="wrapper">

@@ -48,10 +48,8 @@ html, body {
   top: 100px;
 
 }
-.song-info-wrapper {
-  position: relative;
-  top: -100px;
-  left: 780px;
+.song-list-content:hover{
+  background-color: #444444;
 }
 
 li {
@@ -70,13 +68,19 @@ ul {
   text-align: center;
 }
 /* SongInfo */
+
+.song-info-wrapper {
+  position: relative;
+  top: -100px;
+  left: 780px;
+}
 .album-pic img {
   border-radius: 50%;
   width: 200px;
 
 }
 .img-rotation{
-  animation: rotation 30s infinite;
+  animation: rotation 30s linear infinite;
 }
 
 
@@ -96,7 +100,7 @@ ul {
 }
 .right-content{
   position: relative;
-  left: 94%;
+  left: 98%;
   bottom: 64px;
 
 }
