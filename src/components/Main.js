@@ -67,7 +67,7 @@ class Player extends React.Component {
    * 转换时间的表示方式
    * @param time 以秒计时转换为以分秒计时
    */
-  timeConvert(time){
+  timeConvert = (time) => {
     let min = Math.floor(time / 60);
     let sec = Math.floor(time - min * 60);
     if(sec < 10){
@@ -78,7 +78,7 @@ class Player extends React.Component {
     }
     time = min + ':' +sec;
     return time;
-  }
+  };
 
   render() {
     let audio = document.getElementsByTagName('audio')[0];
@@ -133,8 +133,9 @@ class MusicPlayer extends React.Component {
 
   /**
    * 通过isPlay判断歌曲的播放状态，执行播放或暂停方法
+   * @param index 当前播放歌曲的索引
    */
-  play(){
+  play = (index) => {
     let audio = document.getElementsByTagName('audio')[0];
     if(!this.state.isPlay){
       audio.play();
@@ -142,41 +143,57 @@ class MusicPlayer extends React.Component {
       audio.pause();
     }
     this.state.isPlay = !this.state.isPlay;
-    this.setState({});
-  }
+    this.setState({
+      currentSongIndex: index
+    });
+  };
 
   /**
    * 播放下一首歌曲
+   * @param index 
    */
-  nextSong(){
-    let lastIndex = songData.length - 1;
+  nextSong = (index) => {
+    let len = songData.length,
+      lastIndex = len - 1;
     this.state.isPlay = false;
-    if(this.state.currentSongIndex < lastIndex){
-      this.state.currentSongIndex +=1;
+    if(this.state.playMode){
+      if(this.state.currentSongIndex < lastIndex){
+        this.state.currentSongIndex +=1;
+      }else{
+        this.state.currentSongIndex = 0;
+      }
     }else{
-      this.state.currentSongIndex = 0;
+      this.state.currentSongIndex
     }
-    this.setState({});
-  }
+    this.setState({
+      currentSongIndex: index
+    });
+  };
+
   /**
    * 播放上一首歌曲
    */
-  preSong(){
-    let lastIndex = songData.length - 1;
+  preSong = (index) => {
+    let len = songData.length,
+      lastIndex = len - 1;
     this.state.isPlay = false;
     if(this.state.currentSongIndex === 0){
       this.state.currentSongIndex = lastIndex;
     }else{
       this.state.currentSongIndex -= 1;
     }
-    this.setState({});
-  }
-  componentDidMount(){
+    this.setState({
+      currentSongIndex: index
+    });
+  };
+
+  componentDidMount = () =>{
     let audio = document.getElementsByTagName('audio')[0];
     this.setState({
       currentSongTime: audio.currentTime
     });
-  }
+  };
+
   render() {
     return(
       <div id="wrapper">
