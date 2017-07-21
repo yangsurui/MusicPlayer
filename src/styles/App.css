@@ -149,7 +149,7 @@ ul {
   font-size: 30px;
 }
 .shuffle::before{
-  content: 'ea30';
+  content: '\ea30';
   font-size: 30px;
 }
 .volume-control::before{

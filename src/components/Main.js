@@ -13,6 +13,9 @@ import React from 'react';
  */
 let songData = require('../data/songData.json');
 
+//随机生成给定区间中的一个数值
+let getRandomNum = (min, max) => Math.ceil(Math.random()*(max-min)+min);
+
 class Song extends React.Component {
   render(){
     return(
@@ -84,9 +87,10 @@ class Player extends React.Component {
     let audio = document.getElementsByTagName('audio')[0];
 
     let playBtnClassName = 'icon-font';
-    playBtnClassName += this.props.songState.isPlay ? ' play' :' pause';
+    playBtnClassName += this.props.songState.isPlay ? ' play' : ' pause';
 
-
+    let playModeClassName = 'icon-font';
+    playModeClassName += this.props.songState.playMode ? ' order' : ' shuffle';
     return(
       <div className="player-wrapper">
 
@@ -107,7 +111,7 @@ class Player extends React.Component {
           <span className="total-time">{this.timeConvert(this.props.data.duration)}</span>
         </div>
         <div className="right-content">
-            <span className="icon-font order"></span>
+            <span className={playModeClassName} onClick={this.props.changePlayMode.bind(this)}></span>
             <span className="icon-font volume-control"></span>
         </div>
 
@@ -127,15 +131,16 @@ class MusicPlayer extends React.Component {
         playMode: true //播放模式，true列表顺序播放，false随机播放，默认随机播放
     };
     this.play = this.play.bind(this);
-    this.nextSong = this.nextSong.bind(this);
     this.preSong = this.preSong.bind(this);
+    this.nextSong = this.nextSong.bind(this);
+    this.changePlayMode = this.changePlayMode.bind(this);
   }
 
   /**
    * 通过isPlay判断歌曲的播放状态，执行播放或暂停方法
-   * @param index 当前播放歌曲的索引
+   *
    */
-  play = (index) => {
+  play = () => {
     let audio = document.getElementsByTagName('audio')[0];
     if(!this.state.isPlay){
       audio.play();
@@ -143,16 +148,14 @@ class MusicPlayer extends React.Component {
       audio.pause();
     }
     this.state.isPlay = !this.state.isPlay;
-    this.setState({
-      currentSongIndex: index
-    });
+    this.setState({});
   };
 
   /**
    * 播放下一首歌曲
-   * @param index 
+   *
    */
-  nextSong = (index) => {
+  nextSong = () => {
     let len = songData.length,
       lastIndex = len - 1;
     this.state.isPlay = false;
@@ -163,36 +166,31 @@ class MusicPlayer extends React.Component {
         this.state.currentSongIndex = 0;
       }
     }else{
-      this.state.currentSongIndex
+      this.state.currentSongIndex = getRandomNum(-1,len-1);
     }
-    this.setState({
-      currentSongIndex: index
-    });
+    this.setState({});
   };
 
   /**
    * 播放上一首歌曲
    */
-  preSong = (index) => {
+  preSong = () => {
     let len = songData.length,
       lastIndex = len - 1;
     this.state.isPlay = false;
     if(this.state.currentSongIndex === 0){
-      this.state.currentSongIndex = lastIndex;
+       this.state.currentSongIndex = lastIndex;
     }else{
       this.state.currentSongIndex -= 1;
     }
-    this.setState({
-      currentSongIndex: index
-    });
+    this.setState({});
   };
 
-  componentDidMount = () =>{
-    let audio = document.getElementsByTagName('audio')[0];
-    this.setState({
-      currentSongTime: audio.currentTime
-    });
+  changePlayMode = () =>{
+    this.state.playMode = !this.state.playMode;
+    this.setState({});
   };
+  
 
   render() {
     return(
@@ -209,6 +207,7 @@ class MusicPlayer extends React.Component {
           play={this.play}
           nextSong={this.nextSong}
           preSong={this.preSong}
+          changePlayMode={this.changePlayMode}
         />
       </div>
 

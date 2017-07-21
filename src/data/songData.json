@@ -1,36 +1,58 @@
 [
-    {
-      "number": "1",
-      "songName": "Young And Beautiful",
-      "artists": "Lana Del Rey",
-      "url": "../audios/YoungAndBeautiful.mp3",
-      "album": {
-        "name": "Young And Beautiful",
-        "url": "../images/YoungAndBeautiful.jpg"
-      },
-      "duration": 236
+  {
+    "number": "1",
+    "songName": "Young And Beautiful",
+    "artists": "Lana Del Rey",
+    "url": "../audios/YoungAndBeautiful.mp3",
+    "album": {
+      "name": "Young And Beautiful",
+      "url": "../images/YoungAndBeautiful.jpg"
     },
-    {
-      "number": "2",
-      "songName": "Royals",
-      "artists": "Lorde",
-      "url": "../audios/Royals.mp3",
-      "album": {
-        "name": "Royals",
-        "url": "../images/Royals.jpg"
-      },
-      "duration": 190
+    "duration": 236
+  },
+  {
+    "number": "2",
+    "songName": "Royals",
+    "artists": "Lorde",
+    "url": "../audios/Royals.mp3",
+    "album": {
+      "name": "Royals",
+      "url": "../images/Royals.jpg"
     },
-    {
-      "number": "3",
-      "songName": "No Vacancy",
-      "artists": "One Republic",
-      "url": "../audios/NoVacancy.mp3",
-      "album": {
-        "name": "No Vacancy",
-        "url": "../images/NoVacancy.jpg"
-      },
-      "duration": 223
-    }
+    "duration": 190
+  },
+  {
+    "number": "3",
+    "songName": "No Vacancy",
+    "artists": "One Republic",
+    "url": "../audios/NoVacancy.mp3",
+    "album": {
+      "name": "No Vacancy",
+      "url": "../images/NoVacancy.jpg"
+    },
+    "duration": 223
+  },
+  {
+    "number": "4",
+    "songName": "At My Best",
+    "artists": "MGK",
+    "url": "../audios/AtMyBest.mp3",
+    "album": {
+      "name": "At My Best",
+      "url": "../images/AtMyBest.jpg"
+    },
+    "duration": 200
+  },
+  {
+    "number": "5",
+    "songName": "Summertrain",
+    "artists": "Greyson Chance",
+    "url": "../audios/Summertrain.mp3",
+    "album": {
+      "name": "Hold On ‘Til The Night",
+      "url": "../images/Summertrain.jpg"
+    },
+    "duration": 272
+  }
 ]
 
