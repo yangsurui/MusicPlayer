@@ -3,14 +3,6 @@ require('styles/App.css');
 
 import React from 'react';
 
-/**
- * arr[0]: 歌曲索引
- * arr[1]: 歌曲名
- * arr[2]: 歌手
- * arr[3]: 歌曲路径
- * arr[4][0]: 所属专辑名
- * arr[4][1]: 所属专辑图片路径
- */
 let songData = require('../data/songData.json');
 
 //随机生成给定区间中的一个数值
@@ -19,12 +11,12 @@ let getRandomNum = (min, max) => Math.ceil(Math.random()*(max-min)+min);
 class Song extends React.Component {
   render(){
     return(
-      <ul className="song-list-content">
-        <li>{this.props.data.number}</li>
-        <li>{this.props.data.songName}</li>
-        <li>{this.props.data.artists}</li>
-        <li>{this.props.data.album.name}</li>
-      </ul>
+      <li className="song-list-content">
+        <div className="song-list-item">{this.props.data.number}</div>
+        <div className="song-list-item">{this.props.data.songName}</div>
+        <div className="song-list-item">{this.props.data.artists}</div>
+        <div className="song-list-item">{this.props.data.album.name}</div>
+      </li>
     )
   }
 }
@@ -40,11 +32,13 @@ class SongList extends React.Component {
     return(
       <div className="song-list-wrapper">
         <ul id="song-list-title">
-          <li>编号</li>
+          <li></li>
           <li>歌曲</li>
           <li>歌手</li>
           <li>专辑</li></ul>
-        {songInfo}
+        <ul className="song-list">
+          {songInfo}
+        </ul>
       </div>
     );
   }
@@ -190,7 +184,7 @@ class MusicPlayer extends React.Component {
     this.state.playMode = !this.state.playMode;
     this.setState({});
   };
-  
+
 
   render() {
     return(
