@@ -28,6 +28,7 @@
 
 html, body {
   background-color: #333333;
+  overflow: hidden;
 }
 
 #app {
@@ -98,16 +99,14 @@ li {
 .img-rotation{
   animation: rotation 30s linear infinite;
 }
-.song-name{
-  width: 200px;
-  margin: 0 10px;
-
+p{
+  font-size: 18px;
+  text-align: center;
+  margin: 20px 0 0 0;
 }
-.artists{
-  width: 200px;
-  margin: 0 10px;
+.artists > p{
+  font-size: 16px;
 }
-
 
 /* Player */
 .player-wrapper{
@@ -175,4 +174,10 @@ li {
 .volume-control::before{
   content: '\ea26';
   font-size: 30px;
+}
+.animation-running{
+  animation-play-state: running;
+}
+.animation-paused{
+  animation-play-state: paused;
 }
