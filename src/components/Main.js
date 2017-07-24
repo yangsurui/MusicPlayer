@@ -10,12 +10,18 @@ let getRandomNum = (min, max) => Math.ceil(Math.random()*(max-min)+min);
 
 class Song extends React.Component {
   render(){
+    let playBtnClassName = 'icon-font play-state';
+    playBtnClassName += this.props.isPlay ? ' play' : ' pause';
+
     return(
       <li className="song-list-content">
-        <div className="song-list-item">{this.props.data.number}</div>
-        <div className="song-list-item">{this.props.data.songName}</div>
-        <div className="song-list-item">{this.props.data.artists}</div>
-        <div className="song-list-item">{this.props.data.album.name}</div>
+        <div className="song-list-item data-number">{this.props.data.number}</div>
+        <div className="song-list-item data-songName">
+          {this.props.data.songName}
+          <div className={playBtnClassName}></div>
+        </div>
+        <div className="song-list-item data-artists">{this.props.data.artists}</div>
+        <div className="song-list-item data-album">{this.props.data.album.name}</div>
       </li>
     )
   }
@@ -26,16 +32,16 @@ class SongList extends React.Component {
     let songInfo = [];
     songData.forEach((obj,index)=>{
       songInfo.push(
-        <Song key={index} data={obj}/>
+        <Song key={index} data={obj} isPlay={this.props.songState.isPlay}/>
       );
     });
     return(
       <div className="song-list-wrapper">
-        <ul id="song-list-title">
-          <li></li>
-          <li>歌曲</li>
-          <li>歌手</li>
-          <li>专辑</li></ul>
+        <ul className="song-list-title">
+          <li className="data-number"></li>
+          <li className="data-songName" >歌曲</li>
+          <li className="data-artists">歌手</li>
+          <li className="data-album">专辑</li></ul>
         <ul className="song-list">
           {songInfo}
         </ul>
@@ -188,7 +194,7 @@ class MusicPlayer extends React.Component {
   render() {
     return(
       <div id="wrapper">
-        <SongList/>
+        <SongList songState={this.state}/>
         <SongInfo
           data={songData[this.state.currentSongIndex]}
           songState={this.state}

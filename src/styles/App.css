@@ -52,28 +52,58 @@ html, body {
   height: 340px;
   overflow: auto;
 }
-#song-list-title li{
+.song-list-title li{
   float: left;
-  width: 180px;
+  margin: 0 20px 0 0;
   height: 20px;
 }
 .song-list-content{
   width: 720px;
   border-bottom: 1px solid hsla(0,0%,88%,.1);
-
 }
 .song-list-item{
   display: inline-block;
   float: left;
-  width: 180px;
+  width: 140px;
+  height: 28px;
+  margin: 0 20px 0 0;
+  line-height: 28px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-size: 14px;
-
+  font-size: 16px;
 }
+.data-number{
+  width: 90px;
+  box-sizing: border-box;
+  padding: 0 0 0 16px;
+}
+.data-songName{
+  width: 270px;
+}
+.data-artists, .data-album{
+  width: 140px;
+}
+.play-state{
+  float: left;
+}
+
 .song-list-content:hover{
   background-color: hsla(0,0%,88%,.1);
+}
+div.data-songName > div.play::before{
+  display: none;
+}
+div.data-songName > div.pause::before{
+  display: none;
+}
+.song-list-content:hover div.data-songName > div.play::before{
+  display: block;
+  font-size: 26px;
+}
+.song-list-content:hover div.data-songName > div.pause::before{
+  display: block;
+  font-size: 26px;
 }
 
 li {
@@ -146,11 +176,11 @@ p{
 .icon-font{
   font-family: icon-font;
   margin: 0 8px 0 0;
-  font-size: 34px;
   cursor: pointer;
 }
 .pre-song::before{
   content: '\ea1a';
+  font-size: 34px;
 }
 .play::before{
   content: '\ea15';
@@ -162,6 +192,7 @@ p{
 }
 .next-song::before{
   content: '\ea1b';
+  font-size: 34px;
 }
 .order::before{
   content: '\e9bd'; /* 默认顺序播放 */
