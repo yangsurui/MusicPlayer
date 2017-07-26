@@ -11,7 +11,7 @@ let getRandomNum = (min, max) => Math.ceil(Math.random()*(max-min)+min);
 class Song extends React.Component {
   render(){
     let playBtnClassName = 'icon-font play-state';
-    playBtnClassName += this.props.isPlay ? ' play' : ' pause';
+    playBtnClassName += this.props.songState.isPlay ? ' play' : ' pause';
 
     return(
       <li className="song-list-content">
@@ -32,7 +32,7 @@ class SongList extends React.Component {
     let songInfo = [];
     songData.forEach((obj,index)=>{
       songInfo.push(
-        <Song key={index} data={obj} isPlay={this.props.songState.isPlay}/>
+        <Song key={index} data={obj} {...this.props}/>
       );
     });
     return(
@@ -90,6 +90,17 @@ class Player extends React.Component {
 
     let playModeClassName = 'icon-font';
     playModeClassName += this.props.songState.playMode ? ' order' : ' shuffle';
+
+    let progressBtnStyle = {};
+    let left = 0;
+    if(this.props.songState.isPlay){
+      setTimeout(()=>{
+        left += 1;
+
+      }, 1000);
+      progressBtnStyle.left = left + 'px';
+    }
+
     return(
       <div className="player-wrapper">
 
@@ -103,7 +114,7 @@ class Player extends React.Component {
 
         <div className="progress-bar">
             <div className="progress"></div>
-            <div className="progress-btn"></div>
+            <div className="progress-btn" style={progressBtnStyle}></div>
         </div>
         <div className="song-time">
           <span className="current-time">{this.timeConvert(this.props.songState.currentSongTime)}/</span>
@@ -146,8 +157,9 @@ class MusicPlayer extends React.Component {
     }else{
       audio.pause();
     }
-    this.state.isPlay = !this.state.isPlay;
-    this.setState({});
+    this.setState({
+      isPlay: !this.state.isPlay
+    });
   };
 
   /**
@@ -182,7 +194,9 @@ class MusicPlayer extends React.Component {
     }else{
       this.state.currentSongIndex -= 1;
     }
-    this.setState({});
+    this.setState({
+
+    });
   };
 
   changePlayMode = () =>{
@@ -191,7 +205,7 @@ class MusicPlayer extends React.Component {
   };
 
 
-  render() {
+  render () {
     return(
       <div id="wrapper">
         <SongList songState={this.state}/>
