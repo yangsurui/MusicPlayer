@@ -6,16 +6,24 @@ import React from 'react';
 let songData = require('../data/songData.json');
 
 class Song extends React.Component {
+
   render(){
+
     let playBtnClassName = 'icon-font play-state';
-    playBtnClassName += this.props.songState.isPlay ? ' play' : ' pause';
+
+
+    if(this.props.data.number == this.props.songState.currentSongIndex + 1){
+      playBtnClassName += this.props.songState.isPlay ? ' play' : ' pause';
+    }else{
+      playBtnClassName += ' pause';
+    }
 
     return(
-      <li className="song-list-content">
+      <li className="song-list-content" onDoubleClick={this.props.play.bind(this)}>
         <div className="song-list-item data-number">{this.props.data.number}</div>
         <div className="song-list-item data-songName">
           {this.props.data.songName}
-          <div className={playBtnClassName}></div>
+          <div className={playBtnClassName} onClick={this.props.play.bind(this)}></div>
         </div>
         <div className="song-list-item data-artists">{this.props.data.artists}</div>
         <div className="song-list-item data-album">{this.props.data.album.name}</div>
@@ -25,13 +33,17 @@ class Song extends React.Component {
 }
 
 class SongList extends React.Component {
+
   render(){
+
     let songInfo = [];
+
     songData.forEach((obj,index)=>{
       songInfo.push(
         <Song key={index} data={obj} {...this.props}/>
       );
     });
+
     return(
       <div className="song-list-wrapper">
         <ul className="song-list-title">
@@ -49,6 +61,7 @@ class SongList extends React.Component {
 class SongInfo extends React.Component {
 
   render(){
+
     return(
       <div className="song-info-wrapper">
         <div className="album-pic" onClick={this.props.play.bind(this)}>
@@ -80,21 +93,12 @@ class Player extends React.Component {
   };
 
   render() {
+
     let playBtnClassName = 'icon-font';
     playBtnClassName += this.props.songState.isPlay ? ' play' : ' pause';
 
     let playModeClassName = 'icon-font';
     playModeClassName += this.props.songState.playMode ? ' order' : ' shuffle';
-
-    let progressBtnStyle = {};
-    let left = 0;
-    if(this.props.songState.isPlay){
-      setTimeout(()=>{
-        left += 1;
-
-      }, 1000);
-      progressBtnStyle.left = left + 'px';
-    }
 
     return(
       <div className="player-wrapper">
@@ -107,7 +111,7 @@ class Player extends React.Component {
 
         <div className="progress-bar">
             <div className="progress"></div>
-            <div className="progress-btn" style={progressBtnStyle}></div>
+            <div className="progress-btn" style={{'left': this.props.songState.currentSongTime + 'px'}}></div>
         </div>
         <div className="song-time">
           <span className="current-time">{this.timeConvert(this.props.songState.currentSongTime)}/</span>
@@ -133,10 +137,7 @@ class MusicPlayer extends React.Component {
         isPlay: false, //歌曲的播放状态，true播放，false暂停，默认暂停
         playMode: true //播放模式，true列表顺序播放，false随机播放，默认随机播放
     };
-    this.play = this.play.bind(this);
-    this.preSong = this.preSong.bind(this);
-    this.nextSong = this.nextSong.bind(this);
-    this.changePlayMode = this.changePlayMode.bind(this);
+
   }
 
   /**
@@ -144,7 +145,9 @@ class MusicPlayer extends React.Component {
    * @param min 最小值
    * @param max 最大值
    */
-  getRandomNum = (min, max) => Math.ceil(Math.random()*(max-min)+min);
+  getRandomNum = (min, max) => {
+    Math.ceil(Math.random()*(max-min)+min);
+  };
 
   /**
    * 通过isPlay判断歌曲的播放状态，执行播放或暂停方法
@@ -152,9 +155,16 @@ class MusicPlayer extends React.Component {
    */
   play = () => {
     let audio = this.refs.audio;
-    if(!this.state.isPlay){
+    if (!this.state.isPlay) {
       audio.play();
-    }else{
+      setInterval(()=>{
+        let time = this.state.currentSongTime;
+        time += 1;
+        this.setState({
+          currentSongTime: time
+        });
+      },1000);
+    } else {
       audio.pause();
     }
     this.setState({
@@ -163,58 +173,100 @@ class MusicPlayer extends React.Component {
   };
 
   /**
-   * 播放下一首歌曲
-   *
+   * 清除先前播放痕迹
    */
-  nextSong = () => {
-    let len = songData.length,
-      lastIndex = len - 1;
-    if(this.state.playMode){
-      if(this.state.currentSongIndex < lastIndex){
-        this.state.currentSongIndex +=1;
-      }else{
-        this.state.currentSongIndex = 0;
-      }
-    }else{
-      this.state.currentSongIndex = this.getRandomNum(-1,len-1);
-    }
+  clear = () =>{
     this.setState({
-      isPlay: false
+      isPlay: false,
+      currentSongTime: 0
     });
   };
 
   /**
-   * 播放上一首歌曲
+   * 随机播放曲目
+   */
+  shuffle = () =>{
+    this.setState({
+      currentSongIndex: this.getRandomNum(-1, songData.length - 1)
+    });
+  };
+
+  /**
+   * 播放后一首歌曲
+   */
+  nextSong = () => {
+    let len = songData.length,
+      lastIndex = len - 1;
+
+    this.clear();
+
+    if (this.state.playMode) {
+      if (this.state.currentSongIndex < lastIndex){
+        this.state.currentSongIndex +=1;
+      } else {
+        this.state.currentSongIndex = 0;
+      }
+    }else{
+      this.shuffle();
+    }
+  };
+
+  /**
+   * 播放前一首歌曲
    */
   preSong = () => {
     let len = songData.length,
       lastIndex = len - 1;
-    this.state.isPlay = false;
-    if(this.state.currentSongIndex === 0){
-       this.state.currentSongIndex = lastIndex;
-    }else{
-      this.state.currentSongIndex -= 1;
+
+    this.clear();
+
+    if(this.state.playMode) {
+      if (this.state.currentSongIndex === 0) {
+        this.state.currentSongIndex = lastIndex;
+      } else {
+        this.state.currentSongIndex -= 1;
+      }
+    } else {
+      this.shuffle();
     }
-    this.setState({
-      isPlay: false,
-    });
   };
 
+  /**
+   * 更改播放模式
+   */
   changePlayMode = () =>{
     this.setState({
       playMode: !this.state.playMode
     });
   };
 
+  /**
+   * 自动播放下一首歌曲
+   */
+  autoNextSong = () => {
+    setInterval(() => {
+      if (this.state.currentSongTime === this.state.currentSongTotalTime) {
+        this.nextSong();
+      }
+    }, 3000);
+  };
+
+  /**
+   * 打开页面后自动播放歌曲
+   */
   componentDidMount = () =>{
-    this.play();
+
+
   };
 
 
   render () {
     return(
       <div id="wrapper">
-        <SongList songState={this.state}/>
+        <SongList
+          songState={this.state}
+          play={this.play}
+        />
         <SongInfo
           data={songData[this.state.currentSongIndex]}
           songState={this.state}

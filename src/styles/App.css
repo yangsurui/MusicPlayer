@@ -42,7 +42,6 @@ html, body {
   margin: 0 auto;
 
 }
-
 .song-list-wrapper {
   position: relative;
   width: 760px;
@@ -125,6 +124,7 @@ li {
 .album-pic img {
   border-radius: 50%;
   width: 200px;
+  cursor: pointer;
 
 }
 .img-rotation{
@@ -163,17 +163,14 @@ p{
   height: 10px;
   margin: -6px 0 0 0;
   position: relative;
-
 }
 .song-time{
   margin: -15px 0 0 810px;
-
 }
 .right-content{
   margin: -30px 0 0 930px;
-
-
 }
+
 .icon-font{
   font-family: icon-font;
   margin: 0 8px 0 0;
