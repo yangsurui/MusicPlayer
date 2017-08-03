@@ -155,21 +155,18 @@ class MusicPlayer extends React.Component {
    */
   play = () => {
     let audio = this.refs.audio;
-    if (!this.state.isPlay) {
+    if (this.state.isPlay === false) {
       audio.play();
-      setInterval(()=>{
-        let time = this.state.currentSongTime;
-        time += 1;
-        this.setState({
-          currentSongTime: time
-        });
-      },1000);
+
     } else {
       audio.pause();
     }
     this.setState({
-      isPlay: !this.state.isPlay
+      isPlay: !this.state.isPlay,
+      currentSongTotalTime: songData[this.state.currentSongIndex].duration
+
     });
+
   };
 
   /**
@@ -202,9 +199,13 @@ class MusicPlayer extends React.Component {
 
     if (this.state.playMode) {
       if (this.state.currentSongIndex < lastIndex){
-        this.state.currentSongIndex +=1;
+        this.setState({
+          currentSongIndex: this.state.currentSongIndex + 1
+        });
       } else {
-        this.state.currentSongIndex = 0;
+        this.setState({
+          currentSongIndex: 0
+        });
       }
     }else{
       this.shuffle();
@@ -222,9 +223,13 @@ class MusicPlayer extends React.Component {
 
     if(this.state.playMode) {
       if (this.state.currentSongIndex === 0) {
-        this.state.currentSongIndex = lastIndex;
+        this.setState({
+          currentSongIndex: lastIndex
+        });
       } else {
-        this.state.currentSongIndex -= 1;
+        this.setState({
+          currentSongIndex: this.state.currentSongIndex - 1
+        });
       }
     } else {
       this.shuffle();
@@ -240,21 +245,27 @@ class MusicPlayer extends React.Component {
     });
   };
 
-  /**
-   * 自动播放下一首歌曲
-   */
-  autoNextSong = () => {
-    setInterval(() => {
-      if (this.state.currentSongTime === this.state.currentSongTotalTime) {
-        this.nextSong();
-      }
-    }, 3000);
-  };
-
-  /**
-   * 打开页面后自动播放歌曲
-   */
   componentDidMount = () =>{
+
+    /**
+     * 打开页面后自动播放歌曲
+     */
+    this.play();
+
+    /**
+     * 同步播放时间
+     * 当前歌曲播放完后，跳至下一首
+     */
+    let audio  = this.refs.audio;
+    setInterval(()=> {
+      this.setState({
+        currentSongTime: audio.currentTime
+      },() => {
+        if (this.state.currentSongTime >= this.state.currentSongTotalTime) {
+          this.nextSong();
+        }
+      });
+    },1000);
 
 
   };
