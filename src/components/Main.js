@@ -146,7 +146,7 @@ class MusicPlayer extends React.Component {
    * @param max 最大值
    */
   getRandomNum = (min, max) => {
-    Math.ceil(Math.random()*(max-min)+min);
+    return Math.ceil(Math.random()*(max-min)+min);
   };
 
   /**
