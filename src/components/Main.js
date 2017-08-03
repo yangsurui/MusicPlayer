@@ -6,11 +6,16 @@ import React from 'react';
 let songData = require('../data/songData.json');
 
 class Song extends React.Component {
+  
+  play = () => {
+    if(this.props.data.number == this.props.songState.currentSongIndex + 1){
+      this.props.play();
+    }
+  };
 
   render(){
 
     let playBtnClassName = 'icon-font play-state';
-
 
     if(this.props.data.number == this.props.songState.currentSongIndex + 1){
       playBtnClassName += this.props.songState.isPlay ? ' play' : ' pause';
@@ -19,11 +24,11 @@ class Song extends React.Component {
     }
 
     return(
-      <li className="song-list-content" onDoubleClick={this.props.play.bind(this)}>
+      <li className="song-list-content" onDoubleClick={this.play}>
         <div className="song-list-item data-number">{this.props.data.number}</div>
         <div className="song-list-item data-songName">
           {this.props.data.songName}
-          <div className={playBtnClassName} onClick={this.props.play.bind(this)}></div>
+          <div className={playBtnClassName} onClick={this.play}></div>
         </div>
         <div className="song-list-item data-artists">{this.props.data.artists}</div>
         <div className="song-list-item data-album">{this.props.data.album.name}</div>
