@@ -45,7 +45,7 @@ html, body {
 .song-list-wrapper {
   position: relative;
   width: 760px;
-  top: 100px;
+  top: 124px;
 }
 .song-list{
   width: 100%;
@@ -117,7 +117,7 @@ li {
 .song-info-wrapper {
   position: relative;
   width: 200px;
-  top: -250px;
+  top: -224px;
   left: 810px;
 
 }
@@ -133,10 +133,11 @@ li {
 p{
   font-size: 18px;
   text-align: center;
-  margin: 20px 0 0 0;
+  margin: 34px 0 0 0;
 }
 .artists > p{
   font-size: 16px;
+  margin: 20px 0 0 0;
 }
 
 /* Player */
