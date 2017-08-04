@@ -6,7 +6,7 @@ import React from 'react';
 let songData = require('../data/songData.json');
 
 class Song extends React.Component {
-  
+
   play = () => {
     if(this.props.data.number == this.props.songState.currentSongIndex + 1){
       this.props.play();
@@ -59,6 +59,11 @@ class SongList extends React.Component {
         <ul className="song-list">
           {songInfo}
         </ul>
+        <div className="scroll-bar">
+          <div className="up-arrow"></div>
+          <div className="scroll-position"></div>
+          <div className="down-arrow"></div>
+        </div>
       </div>
     );
   }
