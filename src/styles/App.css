@@ -112,12 +112,29 @@ li {
   overflow: hidden;
 }
 
+.scroll-bar{
+  border-radius: 3px;
+  background-color: #232323;
+  width: 8px;
+  height: 340px;
+  position: relative;
+  left: 750px;
+  top: -340px;
+
+}
+.scroll-dragger{
+  border-radius: 3px;
+  background-color: #a1a1a1;
+  width: 8px;
+  height: 50px;
+}
+
 /* SongInfo */
 
 .song-info-wrapper {
   position: relative;
   width: 200px;
-  top: -224px;
+  top: -564px;
   left: 810px;
 
 }

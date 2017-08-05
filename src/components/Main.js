@@ -39,6 +39,16 @@ class Song extends React.Component {
 
 class SongList extends React.Component {
 
+  handleWheel = (event) => {
+    event = event || window.event; //兼容浏览器
+    if(event.wheelDelta){ //IEOperaChrome
+
+    }else if(e.detail){ //Firefox
+
+    }
+
+  };
+
   render(){
 
     let songInfo = [];
@@ -59,9 +69,9 @@ class SongList extends React.Component {
         <ul className="song-list">
           {songInfo}
         </ul>
-        <div className="scroll-bar">
+        <div className="scroll-bar" ref="scroll-bar">
           <div className="up-arrow"></div>
-          <div className="scroll-position"></div>
+          <div className="scroll-dragger" ref="scroll-dragger"></div>
           <div className="down-arrow"></div>
         </div>
       </div>
