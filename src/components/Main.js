@@ -39,19 +39,11 @@ class Song extends React.Component {
 
 class SongList extends React.Component {
 
-  handleWheel = (event) => {
-    event = event || window.event; //兼容浏览器
-    if(event.wheelDelta){ //IEOperaChrome
-
-    }else if(e.detail){ //Firefox
-
-    }
-
-  };
 
   render(){
 
     let songInfo = [];
+
 
     songData.forEach((obj,index)=>{
       songInfo.push(
@@ -69,11 +61,6 @@ class SongList extends React.Component {
         <ul className="song-list">
           {songInfo}
         </ul>
-        <div className="scroll-bar" ref="scroll-bar">
-          <div className="up-arrow"></div>
-          <div className="scroll-dragger" ref="scroll-dragger"></div>
-          <div className="down-arrow"></div>
-        </div>
       </div>
     );
   }
@@ -120,6 +107,9 @@ class Player extends React.Component {
     let playModeClassName = 'icon-font';
     playModeClassName += this.props.songState.playMode ? ' order' : ' shuffle';
 
+    //使进度条按钮在进度条上均匀移动
+    let lef = Math.floor(630 * this.props.songState.currentSongTime / this.props.songState.currentSongTotalTime);
+
     return(
       <div className="player-wrapper">
 
@@ -129,9 +119,9 @@ class Player extends React.Component {
           <span className="icon-font next-song" onClick={this.props.nextSong.bind(this)}></span>
         </div>
 
-        <div className="progress-bar">
+        <div className="progress-bar" ref="progress">
             <div className="progress"></div>
-            <div className="progress-btn" style={{'left': this.props.songState.currentSongTime + 'px'}}></div>
+            <div className="progress-btn" style={{'left': lef + 'px'}}></div>
         </div>
         <div className="song-time">
           <span className="current-time">{this.timeConvert(this.props.songState.currentSongTime)}/</span>
@@ -281,7 +271,7 @@ class MusicPlayer extends React.Component {
       this.setState({
         currentSongTime: audio.currentTime
       },() => {
-        if (this.state.currentSongTime >= this.state.currentSongTotalTime) {
+        if (this.state.currentSongTime > this.state.currentSongTotalTime) {
           this.nextSong();
         }
       });
