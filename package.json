@@ -19,7 +19,11 @@
     "test:watch": "karma start --autoWatch=true --singleRun=false"
   },
   "repository": "",
-  "keywords": ["react","musicPlayer","es6"],
+  "keywords": [
+    "react",
+    "musicPlayer",
+    "es6"
+  ],
   "author": "ysr",
   "devDependencies": {
     "babel-core": "^6.0.0",
