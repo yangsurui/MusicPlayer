@@ -3,10 +3,10 @@
     "number": "1",
     "songName": "Young And Beautiful",
     "artists": "Lana Del Rey",
-    "url": "audios/YoungAndBeautiful.mp3",
+    "url": "/audios/YoungAndBeautiful.mp3",
     "album": {
       "name": "Young And Beautiful",
-      "url": "images/YoungAndBeautiful.jpg"
+      "url": "/images/YoungAndBeautiful.jpg"
     },
     "duration": 236
   },
@@ -14,10 +14,10 @@
     "number": "2",
     "songName": "Royals",
     "artists": "Lorde",
-    "url": "audios/Royals.mp3",
+    "url": "/audios/Royals.mp3",
     "album": {
       "name": "Royals",
-      "url": "images/Royals.jpg"
+      "url": "/images/Royals.jpg"
     },
     "duration": 190
   },
@@ -25,10 +25,10 @@
     "number": "3",
     "songName": "No Vacancy",
     "artists": "One Republic",
-    "url": "audios/NoVacancy.mp3",
+    "url": "/audios/NoVacancy.mp3",
     "album": {
       "name": "No Vacancy",
-      "url": "images/NoVacancy.jpg"
+      "url": "/images/NoVacancy.jpg"
     },
     "duration": 223
   },
@@ -36,10 +36,10 @@
     "number": "4",
     "songName": "At My Best",
     "artists": "MGK / Hailee Steinfield ",
-    "url": "audios/AtMyBest.mp3",
+    "url": "/audios/AtMyBest.mp3",
     "album": {
       "name": "At My Best",
-      "url": "images/AtMyBest.jpg"
+      "url": "/images/AtMyBest.jpg"
     },
     "duration": 200
   },
@@ -47,10 +47,10 @@
     "number": "5",
     "songName": "Summertrain",
     "artists": "Greyson Chance",
-    "url": "audios/Summertrain.mp3",
+    "url": "/audios/Summertrain.mp3",
     "album": {
       "name": "Hold On ‘Til The Night",
-      "url": "images/Summertrain.jpg"
+      "url": "/images/Summertrain.jpg"
     },
     "duration": 272
   },
@@ -58,10 +58,10 @@
     "number": "6",
     "songName": "Chained to the Rhythm",
     "artists": "Katy Perry / Skip Marley",
-    "url": "audios/ChainedToTheRhythm.mp3",
+    "url": "/audios/ChainedToTheRhythm.mp3",
     "album": {
       "name": "Witness",
-      "url": "images/ChainedToTheRhythm.jpg"
+      "url": "/images/ChainedToTheRhythm.jpg"
     },
     "duration": 237
   },
@@ -69,10 +69,10 @@
     "number": "7",
     "songName": "Need You Now",
     "artists": "Lady Antebellum",
-    "url": "audios/NeedYouNow.mp3",
+    "url": "/audios/NeedYouNow.mp3",
     "album": {
       "name": "iTunes Session",
-      "url": "images/NeedYouNow.jpg"
+      "url": "/images/NeedYouNow.jpg"
     },
     "duration": 237
   },
@@ -80,10 +80,10 @@
     "number": "8",
     "songName": "Bad Things",
     "artists": "MGK / Camila Cabello ",
-    "url": "audios/BadThings.mp3",
+    "url": "/audios/BadThings.mp3",
     "album": {
       "name": "Bad Things",
-      "url": "images/BadThings.jpg"
+      "url": "/images/BadThings.jpg"
     },
     "duration": 239
 
@@ -92,10 +92,10 @@
     "number": "9",
     "songName": "Famous",
     "artists": "Lady Antebellum",
-    "url": "audios/Famous.mp3",
+    "url": "/audios/Famous.mp3",
     "album": {
       "name": "Heart Break",
-      "url": "images/Famous.jpg"
+      "url": "/images/Famous.jpg"
     },
     "duration": 232
 
@@ -104,10 +104,10 @@
     "number": "10",
     "songName": "Craving You",
     "artists": "Thomas Rhett / Maren Morris",
-    "url": "audios/CravingYou.mp3",
+    "url": "/audios/CravingYou.mp3",
     "album": {
       "name": "Craving You",
-      "url": "images/CravingYou.jpg"
+      "url": "/images/CravingYou.jpg"
     },
     "duration": 227
 
